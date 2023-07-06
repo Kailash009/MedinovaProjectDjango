@@ -1,0 +1,137 @@
+sandeep karan -- YT
+---------------------------------------
+REFLECTION- In C#, reflection is a process to get metadata of a type at runtime. The System.Reflection namespace contains required classes for reflection such as:
+Type
+MemberInfo
+ConstructorInfo
+MethodInfo
+FieldInfo
+PropertyInfo
+TypeInfo
+Assembly
+-------------------------------------------
+class TestReflection
+    {
+        static void Main()
+        {
+                int a = 10;
+                Type type = a.GetType();
+                Console.WriteLine(type);
+            }
+        }
+    }
+---------------------------------------------------------
+class TestReflection
+    {
+        static void Main()
+        {
+            Type t = typeof(System.String);
+            Console.WriteLine(t.Assembly);
+        }
+        }
+    }
+-----------------------------------
+class TestReflection
+    {
+        static void Main()
+        {
+            Type t = typeof(System.String);
+            Console.WriteLine(t.FullName);
+            Console.WriteLine(t.BaseType);
+            Console.WriteLine(t.IsClass);
+            Console.WriteLine(t.IsEnum);
+            Console.WriteLine(t.IsInterface);
+        }
+        }
+    }
+---------------------------------------------------------------------------------------------
+MULTITHREADING -- System.Threading
+---------------------------------------------------------------------
+A thread is defined as the execution path of a program. Each thread defines a unique flow of control. If your application involves complicated and time consuming operations, then it is often helpful to set different execution paths or threads, with each thread performing a particular job.
+Threads are lightweight processes. One common example of use of thread is implementation of concurrent programming by modern operating systems. Use of threads saves wastage of CPU cycle and increase efficiency of an application.
+In C#, each thread has a life cycle. The life cycle of a thread is started when instance of System.Threading.Thread class is created. When the task execution of the thread is completed, its life cycle is ended.
+There are following states in the life cycle of a Thread in C#.
+Unstarted
+Runnable (Ready to run)
+Running
+Not Runnable
+Dead (Terminated)
+Thread class provides different types of methods to implement the states of the threads.
+Sleep() method is used to temporarily suspend the current execution of the thread for specified milliseconds, so that other threads can get the chance to start the execution, or may get the CPU for execution.
+Join() method is used to make all the calling thread to wait until the main thread, i.e. joined thread complete its work.
+Abort() method is used to abort the thread.
+Suspend() method is called to suspend the thread.
+Resume() method is called to resume the suspended thread.
+Start() method is used to send a thread into runnable State.
+class thread
+    {
+        static void Main()
+        {
+            Thread t = new Thread(new ThreadStart(test));
+            t.Start();
+            Console.WriteLine("Program Ended");
+        }
+        static void test()
+        {
+            for (int i = 1; i <= 10; i++)
+            {
+                Console.WriteLine("i:"+i);
+            }
+        }
+        }
+-----------------------
+class Program
+    {
+        static void Main(string[] args)
+        {
+            Thread t = new Thread(new ThreadStart(test));
+            t.Start();
+            for (int i = 1; i <= 10; i++)
+            {
+                Console.WriteLine("Main:" + i);
+            }
+        }
+        static void test()
+        {
+            for (int i = 1; i <= 10; i++)
+            {
+                Console.WriteLine("i:"+i);
+            }
+        }
+    }
+------------------------------------------
+Lambda Expression:-
+------------------------------------------
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading;
+namespace MyFirstConsole
+{
+        class TestDelegate
+        { 
+            static void Main(string[] args)
+            {
+            int[] numbers = { 2, 3, 4, 5 };
+            var squaredNumbers = numbers.Select(p => p * p);   // lambda expression
+            Console.WriteLine(string.Join(" ", squaredNumbers));
+        }
+        }
+        }
+-------------------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+

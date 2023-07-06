@@ -1,0 +1,1310 @@
+Data -> It is raw material facts and figure.
+Information -> Process data is known as information.
+------------------------------------------------------------
+In traditional:-
+------------------
+File ->> File is used for keeping a record.
+1. Can't store huge amount of data.
+2. Security.
+3. Searching Problem.
+------------------------------------------------------------
+Development:-
+-----------------
+1. Font-End. ->> which is immediately visible to the user.
+2. BackEnd.  ->> which store front end information. 
+----------------------------------------------------------------------
+Database Management System/Tool ->> i.e used to manage your data very
+effective and efficient manner.
+Some of list of Database Management Software which are as follows:
+MsAccess,MySql,SqlServer,Oracle,MongoDB,PostgreSql,db2,sybase,Sqlite etc
+------------------------------------------------------------------------------
+Sql Server:-
+------------------
+>> It stands for Structured Query Language.
+>> It is a platform dependent.(It installed only windows O.S.)
+>> It is the product of Microsoft.
+>> Sql Server is a database management tool i.e. used to perform insert,update,delete and other operations in very fast manner.
+>> Sql Server provide good security features and performance is very high.
+>> Sql is extensivily used most of the high level applications like dot net etc.
+--------------------------------------------------------------------------------------
+Database Terminology:-
+---------------------------------
+Data ->
+Information ->
+Database -> It is a collection of Table. (it is a collection of Inter-related data).
+Table -> Relation.
+Rows -> Tuple.
+Column -> Attribute.
+Degree -> No. of Column.
+Cardinality -> No. of Rows.
+------------------------------------------------------------
+Database Language:-
+---------------------------------------------------------
+There are five types of database languages which are listed below:
+1. DDL (Data Defination Language)
+    >> create,alter,drop,truncate,rename,comment.
+2. DML (Data Manipulation Language)
+    >> insert,update,delete.
+3. DCL (Data Control Language)
+    >> Grant,Revoke
+4. TCL (Transaction Control Language)
+   >> Begin Transaction,commit,rollback,savepoint.   	
+5. DQL (Data Query Language)
+   >> Select
+------------------------------------------------------------------------------------
+How to install Sql Server:-
+-----------------------------------------------
+https://www.microsoft.com/en-in/sql-server/sql-server-downloads  -->> Express
+-----------------------------------------------------------------------------------------
+https://docs.microsoft.com/en-us/sql/ssms/download-sql-server-management-studio-ssms?view=sql-server-ver16  ->> SSMS (Sql Server Management Studio)
+---------------------------------------------------
+Sql Server:-
+---------------------
+1. Server Type.
+	a) Database Engine.
+	b) Analysis Service.
+	c) Reporting Service.
+	d) Integration Service.
+	e) Azure.
+-----------------------------------------------
+2. Server Name. -> When you install sql server it automatically
+provide you server name.
+3. Authentication.
+Authentication -> To identify the identity of a user.
+Authorization -> To give access or priviledges to the user.
+	a) Windows Authentication.
+>> it doesn't require username and password.
+>> it works like an admin.
+>> it perform Authorization.
+----------------------------------------------------------------
+	b) Sql Server Authentication.
+>> it require username and password.
+>> it works like an Normal User.
+>> it  perform Authentication.
+----------------------------------------------------------------
+System Database:-
+---------------------------------------
+1. master
+2. model
+3. msdb
+4. tempdb.
+----------------------------------------------------
+Sql Server ->
+>> It provide both GUI and CUI based interface.
+----------------------------------------------------------------
+1. Database ->>
+2. Tables 
+-------------------------
+Primary Key:-
+---------------------------------
+>> It doesn't allow NULL and Duplicate value.
+>> It is uniquely identify of a table.
+---------------------------------------------------------------
+eid
+------------------
+Identity(seed,inc)
+seed -> starting value. -> 1
+inc -> how much inc you want ->1
+-----------------------------------------------
+use Batch10AM
+
+create table tbl_Emp
+(
+eid int primary key identity(101,2),
+ename nvarchar(50),
+age int,
+eaddress nvarchar(100),
+post nvarchar(30),
+salary money
+)
+INSERT Into tbl_Emp(ename,age,eaddress,post,salary) values('Priyanka',25,'Kirti Nagar','SQL',330000)
+--SELECT COMMAND VARIATION
+select * from tbl_Emp
+select * from tbl_Emp where eid=103
+select ename,post,salary from tbl_Emp
+select ename,post,salary from tbl_Emp where eid=101
+
+--update tablename set colname='new value' where colname='oldvalue'
+update tbl_Emp set ename='Priyanka Pandey' where eid=105
+update tbl_Emp set ename='Shipi Sharma',age=18,eaddress='rajendra nagar',post='PO',salary=45000 where eid=103
+---------------------------------------------------------
+create database Batch10AM
+use Batch10AM
+
+create table tbl_Emp
+(
+eid int primary key identity(101,2),
+ename nvarchar(50),
+age int,
+eaddress nvarchar(100),
+post nvarchar(30),
+salary money
+)
+INSERT Into tbl_Emp(ename,age,eaddress,post,salary) values('Priyanka',25,'Kirti Nagar','SQL',330000)
+--SELECT COMMAND VARIATION
+select * from tbl_Emp
+select * from tbl_Emp where eid=103
+select ename,post,salary from tbl_Emp
+select ename,post,salary from tbl_Emp where eid=101
+
+--update tablename set colname='new value' where colname='oldvalue'
+update tbl_Emp set ename='Priyanka Pandey' where eid=105
+update tbl_Emp set ename='Shipi Sharma',age=18,eaddress='rajendra nagar',post='PO',salary=45000 where eid=103
+SQL:-
+----------------
+1.DML (Data Manipulation Language) -> insert,update,delete.
+---------------------------------------------------------------------
+Command to create Database:-
+--------------------------------------------
+create database databasename
+-----------------------------------------------------------------
+Command to select your database:-
+--------------------------------------
+use databasename
+-------------------------------------------
+Command to create table:-
+-----------------------------------
+create table tablename
+(
+colname1 datatype,
+colname2 datatype,
+.
+.
+.
+.
+.
+colNameN datatypeN
+)
+-----------------------------------------------------------------
+ID -> Must be unique.
+Primary Key:-
+------------------
+>> P.K is a key i.e. uniquely identify of table.
+>> P.K doesn't allow NULL and Duplicate value.
+------------------------------------------------------------------------
+eid -> P.K autoincrement.
+-----
+1
+1
+----------------------------
+identity(seed,increment)  ->> identity(1,1)
+------------------------------------
+seed -> starting value.
+increment -> how many inc you need.
+-------------------------------------------------
+Command to insert a record into table:-
+--------------------------------------------------
+1. Insert into specific column.
+2. Insert into all Column.
+----------------------------------------------------
+1. Insert into specific column:-
+---------------------------------------
+insert into tablename(col2,col4,col7) values(value2,value4,value7)
+------------------------------------------------------------------------------
+2. Insert into all Column:-
+------------------------------------
+insert into tablename values(value1,value2,value3........valueN)
+-------------------------------------------------------------------------------
+Command to see table data:-
+---------------------------------
+1. To see all rows and all columns.
+2. To see specific row but all columns.
+3. To see specific column but all rows.
+4. To see specific column and rows.
+---------------------------------------------------------------------------
+1. To see all rows and all columns.
+	select * from tablename
+----------------------------------
+2. To see specific row but all columns.
+   select * from tablename where colname='value'
+-----------------------------------------------------------
+3. To see specific column but all rows.
+select col2,col5,col7 from tablename
+-----------------------------------------------------------
+4. To see specific column and rows.
+select col2,col5,col7 from tablename where colname='value'
+-----------------------------------------------------------
+Update:-
+-------------------------------
+1. update into single column.
+2. update into all column.
+------------------------------------------------
+1. update into single column.
+update tablename set colname='new value' where colname='oldvalue'
+---------------------------------------------------------------------
+2. update into all column.
+update tablename set colname1='new value1',colname2='new value2',,colname3='new value3', where colname='oldvalue'
+-------------------------------------------------------------------------------------
+Delete:-
+--------------
+1. Delete Single record.
+2. Delete Multiple record.
+----------------------------------------
+1. Delete Single Record:-
+-------------------------------
+delete from tablename where colname='value'
+--------------------------------------------------------
+2.Delete Multiple record.
+delete from tablename
+-----------------------------------
+Command to delete the structure of table:-
+------------------------------------------------
+drop table tablename
+-------------------------------------------
+Command to delete the structure of database:-
+------------------------------------------------
+drop database databasename
+-----------------------------------------------
+Alias -> it is used to provide temporary column name of a table.
+Here we use as keyword.
+-----------------------------------------------------------------------------------
+Operator in SQL:-
+----------------------------------
+1. Arithmetic Operator. ->> +,-,*,/
+2. Relational Operator.  >  >=  <  <=     <>(Not)
+3. Logical Operator -> and , or , not
+and -> both condition must be true.
+or -> Either one of the condition is true
+not -> if input is 0 output is 1 and vice-versa.
+---------------------------------------------------------------
+some special operators are:-
+------------------------------------
+1. in
+2. not in.
+3. top
+4. between.
+5. not between.
+6. like.
+Clauses in Sql Server:-
+-----------------------------
+1. order by.
+2. groupby.
+3. having.
+4. where.
+-------------------------------------------------------------------
+create database Batch10AM
+use Batch10AM
+create table tbl_Emp
+(
+eid int primary key identity(1,1),
+ename nvarchar(50),
+age int,
+address nvarchar(50),
+salary money,
+post nvarchar(20)
+)
+select * from tbl_Emp
+insert into tbl_Emp(ename,age,address,salary,post) values('himanshu',44,'trilok nagar',54000,'Clerk')
+
+select 10+5 as 'Addition'
+select 10-5 as 'Subtraction'
+select 10*5 as 'Multiplication'
+select 10/5 as 'Division'
+
+select * from tbl_Emp where not age=34
+----------------------------------------------------------------
+2. Relational Operator.  >  >=  <  <=     <>(Not)
+3. Logical Operator -> and , or , not
+and -> both condition must be true.
+or -> Either one of the condition is true
+not -> if input is 0 output is 1 and vice-versa.
+---------------------------------------------------------------
+some special operators are:-
+------------------------------------
+1. in
+2. not in.
+3. top
+4. between.
+5. not between.
+6. like.  
+>> It is used for pattern matching.
+_  -> To get single character.
+%  -> To get multiple character.
+---------------------------------------------------
+Aggregate Function:- It is always used with group by and having.
+--------------------------
+1. max()
+2. min()
+3. sum()
+4. avg()
+5. count()
+--------------------
+Clauses in Sql Server:-
+-----------------------------
+1. order by.
+2. Groupby.
+3. Having.
+4. where.
+---------------------------------------
+Constraint in Sql:-
+---------------------------
+>> It is a condition that must be satisfied before entering value into a particular column.
+Types of Constraint in Sql:-
+----------------------------------
+1. Not Null.
+2. Unique.
+3. Default.
+4. Check.
+----------------------------------------------
+2. Relational Operator.  >  >=  <  <=     <>(Not)
+3. Logical Operator -> and , or , not
+and -> both condition must be true.
+or -> Either one of the condition is true
+not -> if input is 0 output is 1 and vice-versa.
+---------------------------------------------------------------
+some special operators are:-
+------------------------------------
+1. in
+2. not in.
+3. top
+4. between.
+5. not between.
+6. like.  
+>> It is used for pattern matching.
+_  -> To get single character.
+%  -> To get multiple character.
+---------------------------------------------------
+Aggregate Function:- It is always used with group by and having.
+--------------------------
+1. max()
+2. min()
+3. sum()
+4. avg()
+5. count()
+--------------------
+Clauses in Sql Server:-
+-----------------------------
+1. order by.
+2. Groupby.
+3. Having.
+4. where.
+---------------------------------------
+Constraint in Sql:-
+---------------------------
+>> It is a condition that must be satisfied before entering value into a particular column.
+Types of Constraint in Sql:-
+----------------------------------
+1. Not Null.
+2. Unique.
+3. Default.
+4. Check.
+----------------------------------------------
+select * from tbl_Emp
+select * from tbl_Emp where salary<>54000
+select * from tbl_Emp where not ename='ram'
+select * from tbl_Emp where ename not in('shyam','ravi')
+select top 3 * from tbl_Emp order by eid desc
+select * from tbl_Emp where ename='ram' order by eid desc
+select * from tbl_Emp where salary between 10000 and 30000
+select * from tbl_Emp where salary not between 10000 and 30000	
+select * from tbl_Emp where ename like 's_y_m'
+select * from tbl_Emp where ename like '%s%'
+
+select max(salary) as 'Max_Salary' from tbl_Emp
+select min(salary) as 'Min_Salary' from tbl_Emp
+select sum(salary) as 'Total_Salary' from tbl_Emp
+select avg(salary) as 'Avg_Salary' from tbl_Emp
+select count(salary) as 'Total no. of Employee' from tbl_Emp
+
+
+-- WAQ TO GET TOTAL NUMBER OF EMPLOYEE IN EACH DEPARTMENT.
+select post,count(eid) as 'Total Number of Employee' from tbl_Emp group by post
+
+-- WAQ TO get Total Salary IN EACH DEPARTMENT.
+select post,sum(salary) as 'Total Number of Salary' from tbl_Emp group by post
+
+-- WAQ TO GET TOTAL NUMBER OF EMPLOYEE IN EACH DEPARTMENT where employee is less than 2.
+select post,count(eid) as 'Total Number of Employee' from tbl_Emp group by post order by count(eid)
+-----------------------------------------------------------------------------------
+SET Operators:-
+---------------------------
+>> Column name must be same of both the table.
+>> Order of Column must be match.
+>> Data type must be match.
+------------------------------------------------------------------
+1. Union.
+>> it doesn't allow duplicate value.
+2. UnionAll.
+>> it accept duplicate value.
+3. Intersect. ->> it returns common value from both the value.
+a={1,2,3,4}
+b={3,4,5,67,65}
+a intersection b => {3,4} ans
+4. Except. ->>
+it returns all the data from table1 that doesn't exist in table2.
+create table tbl_hyd
+(
+eid int,
+ename nvarchar(50),
+location nvarchar(100)
+)
+create table tbl_chennai
+(
+eid int,
+ename nvarchar(50),
+location nvarchar(100)
+)
+
+select * from tbl_hyd
+select * from tbl_chennai
+
+select * from tbl_hyd
+union
+select * from tbl_chennai
+
+select * from tbl_hyd
+union all
+select * from tbl_chennai
+
+select * from tbl_hyd
+intersect
+select * from tbl_chennai
+
+select * from tbl_chennai
+except
+select * from tbl_hyd
+Constraint in Sql:-
+-------------------
+1. not null
+2. unique
+3. check
+4. default
+-----------------------
+1. not null :-
+----------------------
+>> it doesn't allow empty value.
+>> it allows duplicate value.
+---------------------------------------------------------------------
+create table test1
+(
+bid int not null,
+blocation nvarchar(40) not null
+)
+insert into test1 values(null,null)
+select * from test1
+---------------------------------------------------------
+2. unique 
+>> it allows only one null value.
+>> it doesn't allow duplicate value.
+------------------------------------------------------------------
+create table test2
+(
+bid int unique,
+blocation nvarchar(40) unique
+)
+select * from test2
+insert into test2 values(null,null)
+------------------------------------------------------------------
+3. check
+-----------------------------
+salary<=10000
+-----------------------------
+create table test3
+(
+bid int unique,
+salary int check(salary<=10000)
+)
+
+select * from test3
+insert into test3 values(103,10001)
+------------------------------------------------
+4. Default:-
+-----------------------
+create table test4
+(
+bid int,
+city nvarchar(50) default'NOIDA'
+)
+
+insert into test4(bid)values(101)
+insert into test4(bid)values(102)
+insert into test4(bid)values(103)
+insert into test4(bid)values(104)
+insert into test4(bid)values(105)
+insert into test4(bid)values(106)
+insert into test4(bid)values(107)
+select * from test4
+-----------------------------------------------
+Stored Procedure:-
+---------------------------
+>> It is a pre-compile database objects.
+>> It provide security to our database.
+>> It enhance the performance of our database.
+>> It reduces the network traffic.
+--------------------------------------------------------------------------
+There are two ways to create SP:-
+1. Without Parameter.
+2. With Parameter.
+----------------------------------------------------------
+1. Without Parameter - 
+----------------------------------------------------------------
+Syntax:-
+-------------
+create proc/procedure proc_name
+as begin
+<Query Statements>
+end
+-----------------------------------------------------------
+Exec/Execute procedurename
+--------------------------------------------------
+2. With Parameter:-
+------------------------------
+Syntax:-
+----------------
+create proc procname
+(
+@parametername datatype,
+@parametername datatype
+.
+.
+.
+@parametername datatypeN
+)
+as begin
+<Query Statements>
+end
+------------------------------------------------------------------------------------
+wap to create procedure and perform CRUD operation.
+--------------------------------------------------------------------------------------
+Aggregate Function -This Function is used to perform the calculations on multiple rows of a single column of a table. It returns a single value.
+It is also used to summarize the data.
+------------------------------------------------------------------------------
+max()
+min()
+sum()
+average()
+count()
+len()
+------------------
+13. SET OPERATORS- To combine two or more than two select statements.
+rules-
+1.no. of column should be same with in both select statement.
+2.order of column should be same.
+3.datatypes of the column must be match.
+1.union - without duplicate
+2.union all -  with duplicate
+3.intersect - it returns common values from the table.
+4.Except - it returns all values from the left hand side table which are not found in right hand table.
+-------------------------------------
+Retrieve Methods-
+------------------------------------
+1.Selection. -> To retrieve data from the table based on condition.(With Condition).
+2.Projection. ->To retrieve data from the table without condition. (Without Condition).
+3.Joins - To retrieve information from more than one table(Relation).
+--------------------------------------------------------------------------
+Types of Joins- There are two Categories of join----
+(ANSI - American National Standard Institution)
+-----------------------------------------------------------
+a) ANSI-Format JOINS(New style Format) - with "on" keyword join condition.	  
+1.inner join.
+2.outer join. a) Left outer b) right outer c) full outer join.
+3.cross join.
+4.Natural join.
+--------------------------------------------------------------------------
+b) NON-ANSI Format (Old Style Format)- with "where" keyword join condition
+1. Equi join 
+2. Non- Equi
+3. Self join
+--------------------------------------------------------------
+1.Selection - To retreive information from table based on condition.(with where condition). (row)
+2.Projection - without where condition. (column)
+-----------------------------------------------------
+3.Joins - 
+--To retrieve information from more than one table.
+--Retreving data from multiple tables at a time.
+a) ANSI-Format JOINS(New style Format) - with "on" keyword join condition.	  
+1.inner join - Retrieve the data from multiple tables based on an equality condition.
+---Returns records that have matching values in both tables.
+----Common column required.
+----Common column data type must be same.
+--- Matching Data/Rows.
+----With duplicate columns.
+syntax-
+select list of column from table1 join or inner join table2 on (joining condition).
+------------------------------------------------------------------------------------------
+create table tbl_course
+(
+courseid int primary key identity(1,1),
+cname nvarchar(30),
+cfee decimal(6,2)
+)
+insert into tbl_course values('PHP','7000')
+insert into tbl_student values('Sukhjeet','sukh@yahoo.com',3)
+select * from tbl_course
+select * from tbl_student
+create table tbl_student
+(
+sid int primary key identity(1,1),
+sname nvarchar(30),
+smailid nvarchar(40),
+courseid int foreign key references tbl_course(courseid)      
+)
+select * from tbl_course
+select * from tbl_student
+select sname,smailid,cname,cfee from tbl_course inner join  tbl_student  on tbl_course.courseid=tbl_student.courseid
+select sname,smailid,cname,cfee from tbl_course c1 join tbl_student s1 on c1.courseid=s1.courseid
+select * from student inner join course on student.courseid=course.courseid
+---------------------------------------------------------------------------------------
+2.outer join a) Left outer b) right outer c) full outer join.
+--------------------------------------------------------------------------------
+outerjoin- matching and unmatching data from the table.
+left-Return all records from the left table, and the matched records from the right table unmatched return NULL.
+right -Returns all records from the right table, and the matched records from the left table unmatched return NULL.
+full -Returns all records when there is a match in either left or right table.
+------------------------------------------------------------------------------------
+select * from student left outer join course c on s.courseid=c.courseid
+select * from student right outer join course c on s.courseid=c.courseid
+select * from student full outer join course c on s.courseid=c.courseid
+---------------------------------------------------------------------------------
+3.cross join - 
+-The Product of Rows.(M*N Rows).
+-To Join Two or more than two tables data without join Condition.
+-There is no requirement a common column in the tables.
+--------------------------------------------------------------------
+select * from student cross join course - don't use any condition.
+--------------------------------------------------------------------
+4.Natural join - 
+- It is not supported in sql server.
+- Natural join is used to avoid duplicate columns from your join tables. (Oracle Supported). But still if you want to use it then you can use by equi join.(it's similar to natural join.(Equi join can do it in sql server.)
+---------------------------------------------------------------------------------- 
+b) NON-ANSI Format (Old Style Format) - with "where" keyword join condition.
+1. Equi join - EQUI JOIN creates a JOIN for equality or matching column(s) values of the relative tables. EQUI JOIN also create JOIN by using JOIN with ON and then providing the names of the columns with their relative tables to check equality using equal sign (=).  
+It is similar to Natural Join.
+-Without duplicate columns.
+-Retrieving data from the multiples tables based on an Equality Condition(=).
+-Cannot use the Following Operators are-(<,>,>=,<=,!<,!>,!=).
+Syntax-
+----------------------
+SELECT column_list  
+FROM table1, table2....
+WHERE table1.column_name =
+table2.column_name; 
+Ex-
+select s.sname,s.smailid,c.cname,c.cfee from student s ,course c where s.courseid=c.courseid 
+2. Non- Equi - NON EQUI JOIN performs a JOIN using comparison operator other than equal(=) sign like >, <, >=, <=,Between,And with conditions.
+--Retrieving data from the multiple tables based on any condition except equal condition.
+--Can't use Equal(=) operators.
+--Can use >,<=, <, >=, !< , !>,Between,And.
+syntax-
+SELECT *  
+FROM table_name1, table_name2  
+WHERE table_name1.column [> |  < |  >= | <= ] table_name2.column;
+for ex-
+select s.courseid,s.sname,s.smailid,c.courseid,c.cname,c.cfee from student s ,course c where s.courseid<c.courseid.
+---------------------------------------------------------------------------------------------------
+3. Self join
+--A self join is a join in which a table is joined with itself (which is also called Unary relationships).
+--joining a table data by itself is called as self join.
+--It can be used with alias name of the table.
+--Any No. of Alias names on a single table.
+--It can be implemented on a single table only.
+--When we compare a column values within the same table.
+For Ex-
+---------------
+create table tbl_employee
+(
+eid int primary key,
+ename nvarchar(30),
+salary decimal(6,2),
+mid int
+)
+select * from tbl_employee
+insert into tbl_employee values(106,'dinesh',8000,106)
+--write a query to display employee details who are getting the same salary as the employee ajay getting.
+select * from tbl_employee where salary=8000  -- if you know the salary then you can use this
+select * from tbl_employee e1,tbl_employee e2 where e1.salary=e2.salary and e2.ename='ajay'
+select e1.eid,e1.ename,e1.salary from tbl_employee e1,tbl_employee e2 where e1.salary=e2.salary and e2.ename='ajay'
+---------------------------------------------------------------------------------
+TCL- Transaction control Language
+Transaction-To perform some action.
+>> Insert - These are perform some action. It is treated as a Transaction.
+>> update
+>> delete
+--------------------------------------------------
+The above operation used to control the data in the table.
+>To control the data of table purpose- 
+>> Begin Transaction
+>> Commit
+>> Rollback
+>> Savepoint
+----------------------------------------------------------------------
+create table tbl_branch
+(
+bcode int, 
+bname nvarchar(30),
+location nvarchar(30)
+)
+select * from tbl_branch
+insert into tbl_branch values(1021,'SBI','Hyderabad')
+update tbl_branch set location='Mumbai' from tbl_branch where bcode=1021
+delete from tbl_branch where bcode=1021
+---------------------------------------------------
+begin transaction rollback -- you are not getting your previous position of the table.The reason is transaction permanently executed.
+--By Default the DML (insert,update,delete,select) operations are auto commit (Permanently) operations in sql server.
+--Autocommit :System committed the DML operations which was performed by the user on a Table automatically.(user doesn't rollback)
+--Implicit Transaction -  doesn't commit.
+--Explicit Transaction-  does commit.
+---------------------------------------------------------------------------------------------
+1.Begin Transaction - To start the transaction
+Syntax- Begin Transaction <write statements>
+2.Commit - To make the transaction is permanent by Explicitly(user will commited here).
+-- Once the Operations is Commit then we can't RollBack.
+syntax- Begin Transaction <write statements> commit.
+3.Rollback- To cancel a Transaction. (Undo operations)
+syntax- Begin Transaction RollBack
+-----------------------------------------------------------
+begin transaction 
+insert into tbl_branch values(1021,'SBI','Hyderabad')
+begin transaction rollback
+----------------------------------------------------
+begin transaction 
+insert into tbl_branch values(1021,'SBI','Hyderabad')
+commit
+--Once you commit your transaction you can't rollback.
+begin transaction rollback
+--As the same way you can check update and delete.
+--Your Operations are controlled by Programmer.
+------------------------------------------------------------------------
+Working with Multiple Statements in TCL-
+-------------------------------------------------------------
+1. Insert some records in a Table.
+Begin transaction
+delete from tbl_branch where bcode=1021
+delete from tbl_branch where bcode=1023 - we want it can't be cancelled
+delete from tbl_branch where bcode=1025
+begin transaction rollback
+select * from tbl_branch
+---------------------------------------------------------------------------
+4.SavePoint- It is used to create a separate Temporary memory for storing the values which we want to conditionally cancelled(rollback).
+Syntax-
+Begin Transaction 
+<write statements>
+save transaction<pointer name>
+<write statements which we can't cancelled>
+--------------------------------------------------------------------------
+Begin transaction
+delete from tbl_branch where bcode=1021
+delete from tbl_branch where bcode=1025
+save transaction s1
+delete from tbl_branch where bcode=1023
+--------------------------------------------------------------------
+begin transaction rollback  transaction s1
+select * from tbl_branch
+------------------------------------------------------------------------
+Rename- To change column_Name and Table_Name.
+Syntax to change Column_Name
+-----------------------------------------------------
+sp_rename '<TN>.<oldcolumname>','<newcolumnname>'
+sp_rename 'tbl_Emp.EName','EmployeeName'
+------------------------------------------------------
+Syntax to change Table_Name
+--------------------------------------------------------
+sp_rename '<OLD TN>,'<NEW TN>'
+sp_rename 'tbl_Emp','tbl_Emps'
+-------------------------------------------------------
+Alter/DROP-
+--------------
+-To Drop the unwanted columns from the table.
+syntax-
+alter table <TN> drop column <column_Name>
+alter table tbl_Emp drop column dept
+-----------------------------------------------------------
+Truncate- 
+>To delete all Rows from table at a time.
+>I can't delete specific row from the table.
+>It doesn't support "where" keyword condition.
+syntax-
+truncate table <TN>;
+truncate table tbl_Emp
+-------------------------------------------------------
+Drop
+----------
+To drop a Table.
+syntax-
+drop table <TN>
+drop table tbl_Emp
+--------------------------------
+Identity(seed,increment)
+-Auto increment values on a column.
+-Seed- Starting value of ID.
+--------------------------------------------
+Difference between char,varchar and nvarchar()
+--------------------------------------------------
+char(size)
+>It is fixed-Length data type.
+>static data type.(we can't change runtime)
+>It is used to store character and alphanumeric character.
+>1 char=1byte of memory.
+>To waiste a memory is main drawback.
+--------------------------------------------
+varchar(size/max)
+>It is variable length data type.
+>dynamic data type.
+>It saved memory.
+>It is used to store character and alphanumeric character.
+>It is same to same non-unicode (1char=1byte)\
+>varchar(size)=8000byte
+>varchar(max)=2GB
+---------------------------------------
+nvarchar(size/max)
+>N stands for 'National Language Character Set'. 
+>It is used to store variable-length, Unicode string data.
+>It support such as the Japanese Kanji or Korean Hangul characters.
+>nvarchar(max)=2GB
+--------------------------------------------
+Stored Function in T-SQL
+---------------------------------
+>> A function is a block of code which will perform some operation on the given values and must return a value.
+>> Stored functions are also called user Defined Functions in T/SQL.
+>> The user will Define Two Types Stored Functions:
+>> Scalar valued Functions.
+>> Table valued Functions.
+>> Built-in-Functions.
+------------------------------
+>> Aggregate Functions.
+>> System Functions
+---------------------------------
+Working with Scalar valued Functions-
+-------------------------------------------------
+>> In this Function will returns a single value or a single column value from the table.
+Syntax-
+-------------
+Create[or Alter]Function<FName>(@ParameterName1)<DataType>[Size],..................)
+returns <return Parameter/Attribute/variable datatype>
+as 
+begin
+<Function Body/Statements>
+Return<return Parameter/Attribute/variable Name>
+End
+-----------------------------------------------------------------------------
+Syntax to call a Scalar Valued Function-
+----------------------------------------------
+Select dbo.<Fname>(value/values)
+---------------------------------------------------
+Ex- Create a Scalar Valued Function to return the gross salary of the employee based on the following conditions?
+i) HRA----------10%
+ii)DA-----------20%
+iii)PF---------10%
+------------------------------------------------------
+create table tbl_Emp
+(
+eid int,
+ename nvarchar(40),
+sal money,
+deptname nvarchar(40)
+)
+select * from tbl_emp
+create function gross_salary(@eid int)
+returns money
+as 
+begin
+declare @basic money,@hra money,@da money,@pf money,@gross money
+select @basic=Sal from tbl_Emp where EID=@eid
+set @hra=@basic*0.1
+set @da=@basic*0.2
+set @pf=@basic*0.1
+set @gross=@basic+@hra+@da+@pf
+return @gross
+end
+select dbo.gross_salary(102) -- Function Calling
+---------------------------------------------------------------
+Working with Table-Valued Functions-
+---------------------------------------------------------------
+>> In this case a Function will Returns more than one value/more than one column value from the table.
+>> Begin and End is not Required.
+Syntax-
+------------
+Create[or Alter]Function<FName>(@ParameterName1)<DataType>[Size],.................)
+returns Table
+as 
+return(<select Query/Statement>)
+------------------------------------------
+Syntax to call a Table Valued Function-
+-------------------------------------------
+select * from <Function Name>(Value/Values);
+----------------------------------------------------
+Ex-Create a Table Valued Function to accept Department Name as a Parameter and return the list of employee who are working in the given Department Name?
+---------------------------------------------------------------------
+create table tbl_Emp
+(
+eid int,
+ename nvarchar(40),
+sal money,
+deptname nvarchar(40)
+)
+select * from tbl_emp
+create Function joshi(@Deptname varchar(30))
+returns table
+as 
+return(select * from  tbl_emp where deptname=@Deptname)
+----------------------------------------------------------------
+select * from joshi('HR')  - Function Calling
+---------------------------------------------------------------
+Ranking Functions-
+--------------------------------
+>> To Assign the Ranks to each row wise and group of row wise.
+>> Here we use Two imp clauses i.e. partition by and order by clause.
+Partition by- (optional)(on Group of Rows)
+Order by-Mandatory clause.
+--------------------------------------------------------------
+i)Row_Number() 
+ii)Rank()
+iii)Dense_Rank()
+Syntax-
+---------------
+Ranking Function() Over(partition by <column name> order by<Column Name>[Asc/Desc])
+----------------------------------------------------------------------------------------
+EX-
+----------
+create table employee
+(
+eid int,
+ename nvarchar(50),
+salary money, 
+deptno int
+)
+select * from employee
+-------------------------------------
+select ename,salary,ROW_NUMBER() over(order by salary desc) as Ranks from employee
+select ename,salary,rank() over(order by salary desc) as Ranks from employee
+select ename,salary,dense_rank() over(order by salary desc) as Ranks from employee
+--------------------------------------------------------------------------------------
+select ename,deptno,salary,row_number() over(partition by deptno order by salary desc) as Ranks from employee
+select ename,deptno,salary,rank() over(partition by deptno order by salary desc) as Ranks from employee
+select ename,deptno,salary,dense_rank() over(partition by deptno order by salary desc) as Ranks from employee
+----------------------------------------------------------------------------------------
+VIEWS in Sql Server:-
+--------------------------------------
+>> View is a virtual/logical table for the base table.
+>> View doesn't store data but the 'SELECT' query statement is only store.
+>> It will create with the help of "select statement".
+Types of Views
+---------------------------
+1) Simple View:-
+-When we access the required data from a single base table then is called as simple view.
+-It can supports all DML operations.
+-Simple view is also called as "Updatable View".
+2) Complex View:-
+-When we access the required data from multiple base tables then is called as complex view.
+-It doesn't supports all DML operations on multiple base tables at a time.
+-Complex view is also called as "Non-Updatable View".
+-It Supports only "Select" command.
+--------------------------------------------------------------------------------------
+1. Simple View-
+Syntax-
+create view <View Name> as select * from <TN> [Where (Condition)]; // where is optional
+Example
+-------------
+select * from tbl_Emp --Base Table
+create view v1  as select * from tbl_Emp
+select * from v1
+select * from tbl_Emp
+--DML Operations
+insert into v1 values(201,'joshi',3434,'IT')
+update v1 set Sal=80000 where eid=201
+delete from v1 where EID=201
+----------------------------------------------------------------------------------
+2. Complex View-
+syntax-
+create view <View Name> as select * from <TN>;
+Example-
+--------------
+create table tbl_hyd
+(
+eid int,
+ename nvarchar(40),
+sal money
+)
+create table tbl_chennai
+(
+eid int,
+ename nvarchar(40),
+sal money
+)
+--------------------------------------------------------------------------------------------
+select * from tbl_hyd
+select * from tbl_chennai
+-----------------------------------
+create view  cv1 as 
+select * from tbl_hyd
+union
+select * from tbl_chennai
+
+select * from tbl_hyd
+select * from tbl_chennai
+select * from cv1
+--we don't perform any DML operations
+insert into cv1 values(220,'ravi',78687)-Update or insert of view or function 'cv1' failed because it contains a derived or constant field.
+--------------------------------------------------------------------------------------------------
+SQL SUB-QUERIES /NESTED QUERIES-
+-----------------------------------------------------------------
+> Whenever we want to perform some operation on data which will not possible through query.
+> A Query inside another query is called as Sub/Nested Queries.
+Syntax-
+----------
+(Outer Query)									(Inner Query)
+Select * from <TN> where <Condition>(Select * from.......(Select * from.....(Select * from....)));
+---------------------------------------------------------------------------------------------------
+>> As Per the execution process of sub query it again classified in two ways-
+1) Non-Corelated Sub Query.
+2) Corelated Sub Query .
+-----------------------------------------------------------------------------
+1) Non-Corelated Sub Query
+>> First inner query is executed and later outer query will execute.
+>> Outer Query is always depends on the result of inner query.
+2) Corelated Sub Query
+>> First outer query is executed and later inner query will execute.
+>> Inner Query is always depends on the result of Outer query.
+---------------------------------------------------------------------
+1) Working with Non-Corelated Sub Queries:
+----------------------------------------------
+Types of Non-Corelated Queries:-
+	> Simple / Single Sub-Query.
+	> Multiple-Rows Sub Query.
+a)Simple / Single Sub-Query
+----------------------------------
+>>When a Sub Query returns a single value is called as simple/single row subquery.
+Ex-WAQ to get employee details from the table who are getting the first highest salary in the table?
+------------------------------------
+create table emp
+(
+eid int primary key identity(1,1),
+ename nvarchar(30),
+sal decimal(12,2)
+)		
+------------------------------------------
+SubQuery=OuterQuery+InnerQuery
+------------------------------------
+Step 1:
+----------
+InnerQuery
+-----------------
+Select Max(Sal)From tbl_Emp -->>780000
+Step 2:
+-------------
+OuterQuery
+---------------
+Select * from tbl_Emp where salary=(InnerQuery)
+Step3:-
+---------------
+SubQuery=OuterQuery+InnerQuery
+Select * from tbl_Emp where Sal=(select max(Sal) from tbl_Emp)
+------------------------------------------------------------------------------
+b)Multiple-Rows Sub Query
+----------------------------------
+>> A SubQuery returns more than one value is called as multiple row subquery. we can use "IN" operator. 
+>> WAQ to display employee details from the table whose departments is same as the department of the employee shivam or sam.
+------------------------------------------------------------------
+select * from tbl_Emp where deptname in( select deptname from tbl_Emp where Name='Rajesh' or Name='Sandeep')
+or 
+select * from tbl_Emp where deptname IN(select deptname from tbl_Emp where Name in('Rajesh','Sandeep'))
+-----------------------------------------------------------------------------------------
+Difference Between Non-Corelated and Corelated Sub Query- (What are the variations and problems-)
+-------------------------------------------------------------------------------------------------- 
+--How to find "Nth" Highest/Lowest salary from the table.
+Non-Corelated SQ-
+----------------------------
+--1st Highest Salary Employee Details-
+select * from tbl_Emp where Sal=(select max(Sal) from tbl_Emp)
+-------------------------------------------------------------------
+--2nd Highest Salary Employee Details-
+select * from tbl_Emp where Sal=(select max(Sal) from tbl_Emp where Sal<(Select max(Sal) from tbl_Emp))
+--3rd Highset Salary Employee Details-
+select * from tbl_Emp where Sal=(select max(Sal) from tbl_Emp where Sal<(Select max(Sal) from tbl_Emp where Sal<(select max(Sal) from tbl_Emp)))
+-----------------------------------------------------------------------------
+But this is not a convientient way to get highest or least salary get using non-Corelated SubQuery.
+As per this logic if you want to go-
+Nth			 (N+1)inner Query
+1st highest			2
+2nd highest                     3
+3rd highest			4
+Nth highest			n+1
+----------------------------------------------------------------------------------------
+To overcome this problem then we use Corelated SubQuery--
+------------------------------------------------------------
+>>In this First Outer Query is Executed and Later inner Query will execute.
+Syntax-
+Select * from <TN> <Table Alias Name1>
+where N-1=(select count(<Column Name>) from <TN> <Table Alias Name2>
+where <TableAliasName2>.<columnName>) (< / >) <TableAliasName1>.<ColumnName>);
+----------------------------------------------------------------------------------
+Corelated SubQuery-
+--------------------------
+--1st Highest Salary Employee Details- (N=1)
+select * from tbl_Emp e1 where 0=(select count(Sal) from tbl_Emp e2 where e2.Sal>e1.Sal)
+--2nd Highest Salary Employee Details-(N=2)
+select * from tbl_Emp e1 where 1=(select count(Sal) from tbl_Emp e2 where e2.Sal>e1.Sal)
+--3rd Highset Salary Employee Details- (N=3)
+select * from tbl_Emp e1 where 2=(select count(Sal) from tbl_Emp e2 where e2.Sal>e1.Sal)
+---------------------------------------------------------------------------------------------
+DCL- Data Control Language (Grant,Revoke)
+---------------------------------------------------------------------------
+--To control user access in a DB, related to the security issues.
+--It allows to restricts the user from accessing data in DB.
+1. Grant- It gives user access the previleges to the DB.
+Syntax-
+----------
+Grant<previlege List> on <relationname & viewname> to <user/rolelist>;
+------------------------------------------------------------------------------
+Ex-Grant ALL on employee to ABC;
+--------------------------------------------------
+2. Revoke-
+--It is used to cancel previously granted or denied permissions.
+Syntax-
+-------------
+Revoke <previlege List> on <relationname & viewname> from <username>;
+------------------------------------------------------------------------
+Ex- Revoke update on employee from ABC;
+-------------------------------------------------------
+First make one User--
+-------------------------------
+--create login joshi with password='111'
+--create user joshi for login joshi
+use Batch_3PM_SQLServer
+--Grant select on object::emp to joshi (Give Permission)
+--Revoke select on object::emp from joshi (Take out Permission)
+-----------------------------------------------------------------------------
+Grant and Revoke Permission for whole Database-
+------------------------------------------------------
+create login gaurav with password='111'
+create user gaurav for login gaurav
+Grant select,update on database::Batch4PMDotNet  to gaurav
+Revoke update,delete,insert on database :: BatchSQLServer10AMto12PM from VIPIN CASCADE
+--CASCADE is an optional 
+Revoke select on object::emp from VIPIN
+---------------------------------------------------------------------------------------
+Triggers in SQL Server-
+-------------------------------------------------------
+>> A trigger is a special type of stored procedure or stored program that automatically runs when an event occurs in the database server.
+>> When the event occurs and condition is true,execute the action.
+>> By this we achieve Database Security.
+-------------------------------------------------------------------------------------
+Types of Triggers-
+---------------------
+1. DML Trigger (Insert,Update,Delete)
+2. DDL Trigger (Create,Alter,Drop)
+3. Logon Trigger
+--------------------------------------------
+1. DML Trigger-It can be categorized into two types-- 
+a) After - It runs with (Insert,Update,Delete). 
+--------------------------------------------------------------------------------------
+Two Trigger Times-- a) Before  b) After
+Syntax-
+-------------
+Create Trigger <Trigger_Name> Before/After  Insert/update/Delete on <Table Name>
+-----------------------------------------------------------------------------------------
+After Trigger Example-
+------------------------------------
+create table tbl_Employees
+(
+id int primary key,
+name nvarchar(30),
+salary decimal(18,2),
+gender nvarchar(10),
+city nvarchar(40),
+did int
+)
+--------------------------------------------------
+create table tbl_EmployeesAudit
+(
+ID int primary key identity(1,1),
+auditdata nvarchar(100)
+)
+---------------------------------------------------
+After/for Trigger-
+--------------------------
+Create trigger tr_tbl_Employees_forInsert
+on tbl_Employees
+for insert  --- (Action/Event) (After insert)
+as begin 
+declare @ID int
+select @ID=id from inserted  -- (it just keep it all data behind the scene)
+insert into tbl_EmployeesAudit 
+values(
+'New Employee with ID='+CAST(@ID as nvarchar(5))+'is added at'+CAST(GETDATE() as nvarchar(60))
+)
+PRINT 'employee added'
+end
+------------------------------------------------------------------------
+create trigger tr_tbl_Employees_ForDelete
+on tbl_Employees
+for delete    -(Action/Event)
+as begin
+declare @ID int
+select @ID=id from deleted -- It keeps a copy of the row you just deleted.
+insert into tbl_EmployeesAudit
+values(
+'Employees with ID='+CAST(@ID as nvarchar(5))+
+'is Deleted at'+CAST(GETDATE() as nvarchar(50))
+)
+end
+delete from tbl_employee where id=4
+-----------------------------------------------------------------
+create trigger tr_tbl_Employees_ForUpdate
+on tbl_Employees
+for update   --(Action/Event)
+as begin 
+declare @NSal decimal,@OSal decimal
+declare @Name nvarchar(50)
+select @NSal=salary,@Name=name from inserted
+select @OSal=salary from deleted
+insert into tbl_EmployeesAudit
+values(
+'The Salary of '+@Name+
+'was changed to '+CAST(@NSal as nvarchar(30))+' from'+
+CAST(@OSal as nvarchar(30))
+)
+end
+update tbl_employee set salary=43434 where id=5
+'inserted'-> It maintains the new data after the update action.
+'deleted' -> It maintains the old data before the update action.
+>> 'inserted' table contains the updated data and 'deleted' table contains the old data.
+----------------------------------------------------------------------------------------------
+Indexes in SQL-Server
+------------------------------
+>>Indexes are used by queries to find data from table quicky. Indexes are used on both tables and views.
+>>Indexes on a table or a view, are similar to the index we find in a book.
+>>In a similar way, indexes can help the query to find the data quickly.
+>>If there is no index to help the query,then query engine checks every row of table from start to end.This is called as 'Table Scan'. Table Scan is bad for performance,Especially when the table is very large.
+Types of Indexes-
+----------------------------
+a) Clustered Indexes. -- P.K.
+>>It determines the physical order of data in a table. For this reason, a table can have only one clustered index.
+execute sp_helpindex table_name --  see clustered index in your table.
+For Ex- 
+--A clustered index is similar to telephone directory, where data is arranged by first name.
+--A Table can have only one clustered index. However, one clustered index can have multiple columns. Similar, to telephone directory is arranged by first name and last name. 
+----------------------------------------------------------------------------------------------------
+create table tbl_joshi
+(
+id int primary key,
+name nvarchar(50),
+gender nvarchar(10),
+city nvarchar(30),
+salary decimal check (salary>0)
+)
+select * from tbl_joshi
+execute sp_helpindex tbl_joshi  -- clustered index created automatically and arrange id in ascending order.
+-------------------------------------------------
+How to create Explicitly Clustered index-
+--------------------------------------------------
+create clustered index in_tbljoshi_demo
+on tbl_joshi (salary asc,gender desc) 
+----------------------------------------------------------------------------------
+b) Non-Clustered Indexes.
+-------------------------------------------------------------------------------------
+--This index is similar to the index in textbook, where data is stored at one place and index is stored in another place.
+--The index have pointers to the storage location.
+--Since, Non-clustured index are stored seperately, a table can have more than one Non-Clustured Index.
+--In the index itself, data is stored in ascending or descending order of the index key.
+-----------------------------------------------------------------------------------------------
+create nonclustered index in_tbl_joshi4 on tbl_joshi(salary asc)
+create nonclustered index in_tbl_joshi44 on tbl_joshi(city desc)
+drop index tbl_joshi.in_tbl_joshi44
+---------------------------------------------------------------------------------------------
+
+
+
+
+
+

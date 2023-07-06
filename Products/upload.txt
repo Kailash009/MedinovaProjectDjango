@@ -1,0 +1,33 @@
+     private string FileUpload()
+        {
+            string filepath = "~/images/books/books1.png";
+            string filename = Path.GetFileName(BookImgUpload.PostedFile.FileName);
+            if (filename == "" || filename == null)
+            {
+                filepath = global_filepath;
+            }
+            else
+            {
+                BookImgUpload.SaveAs(Server.MapPath("images/books/" + filename));
+                filepath = "~/images/books/" + filename;
+            }
+            return filepath;
+        }
+---------------------------------------------------------------
+function readURL(input)
+          {
+              if (input.files && input.files[0]) {
+                  var reader = new FileReader();
+                  reader.onload = function (e) {
+                      $('#imgview').attr('src', e.target.result);
+                  };
+                  reader.readAsDataURL(input.files[0]);
+              }
+          }
+--------------------------------------------------------
+<asp:FileUpload ID="fuImageUpload" runat="server" onchange="readURL(this)" />
+<img id="imgpic" src="images/pic.png" height="100px" width="100px"/>
+-----------------------------------------------------------------------------------------
+
+
+

@@ -1,0 +1,86 @@
+<html>
+<head>
+<link rel="stylesheet" href="style.css" type="text/css">
+<title>SOLAR ENERGY
+</title>
+<script>
+function getImages()
+{
+// Array of Images
+let images=["slider/a.jpg","slider/b.jpg","slider/c.jpg","slider/d.jpg","slider/e.jpg","slider/f.jpg","slider/g.jpg","slider/h.jpg"];
+let i=0;
+console.log(images.length)
+while(i<images.length-1) 
+{ 
+document.getelementbyid("slide").src=images[i];
+i++; 
+}  
+setinterval(getimages,2000);
+}
+// The setInterval() method calls a function at specified intervals (in milliseconds).
+</script>
+</head>
+<body>
+<div id="wrapper">
+
+<div id="header">
+
+<div id="logo">
+</div>
+
+<div id="heading">
+</div>
+</div>
+
+<div id="menu">
+<ul>
+<li><a href="Home.html">HOME</a></li>
+<li><a href="About us.html">ABOUT US</a></li>
+<li><a href="Gallery.html">GALLERY</a></li>
+<li><a href="news.html">LATEST NEWS</a></li>
+<li><a href="contact.html">CONTACT US</a></li>
+</ul>
+</div>
+
+<div id="slider">
+<img id="slide" src="slider/a.jpg" alt="img" width="1000px" height="350px" onload="getImages();"/>
+</div>
+
+<div id="main">
+
+<div id="left">
+<h2  style="text-align:center;color:red;font-family:monotype corsiva;font-size:30px;"><marquee direction="right" onmouseover="this.stop()" onmouseout="this.start()">WELCOME TO SOLAR ENERGY</marquee></h2>
+<p style="padding-left:8px;font-size:18px;text-align:justify;">Solar energy is the energy, the earth receives from the sun, primarily as visible light and other forms of electromagnetic radiation. The solar portal provides an overview of the information on energypedia related to solar energy. Look for specific topics, latest articles or uploaded documents and announce upcoming events.</p>
+<p style="padding-left:8px;font-size:18px;text-align:justify;">
+Our sun is a natural nuclear reactor. It releases tiny packets of energy called photons, which travel the 93 million miles from the sun to Earth in about 8.5 minutes. Every hour, enough photons impact our planet to generate enough solar energy to theoretically satisfy global energy needs for an entire year.
+</p>
+<p style="padding-left:8px;font-size:18px;text-align:justify;">
+It is an important source of renewable energy and its technologies are broadly characterized as either passive solar or active solar depending on how they capture and distribute solar energy or convert it into solar power. Active solar techniques include the use of photovoltaic systems, concentrated solar power and solar water heating to harness the energy. Passive solar techniques include orienting a building to the Sun, selecting materials with favorable thermal mass or light-dispersing properties, and designing spaces that naturally circulate air.
+</p>
+</div>
+
+<div id="right">
+<p style="text-align:center;font-size:20px;color:red;font-family:arial;background-color:#E5E4E2;"><b>Popular Solar Plant</b></p>
+<marquee direction="down" height="400px" onmouseover="this.stop()" onmouseout="this.start()">
+<p id="marq">1.Kurnool Ultra Mega Solar Park, <b>Andhra Pradesh.</b></p>
+<p id="marq">2.Kamuthi Solar Power Project, <b>Tamil Nadu.</b></p>
+<p id="marq">3.Bhadla Solar Park, <b>Rajasthan.</b></p>
+<p id="marq">4.Charanka Solar Park, <b>Gujarat.</b></p>
+<p id="marq">5.Sakri Solar Plant, <b>Maharashtra.</b></p>	
+</marquee>
+</div>
+</div>
+<div id="footer">
+<table>
+<tr><td><a target= "_blank" href="https://www.facebook.com/"><img src="footer/as.jpg" height=30px;></a></td>
+<td><a target="_blank" href="https://twitter.com/new_account?lang=en" name="twitter"><img src="footer/asd.jpg" height=30px; ></a></td>
+<td><a target="_blank" href="https://www.instagram.com/accounts/login/?hl=en" name="instagram"><img src="footer/ins.jpg" height=30px; ></a></td>
+<td><a  target="_blank" href="https://www.youtube.com/" name="youtube"><img src="footer/you.jpg" height=30px; ></a></td>
+<td><a target= "_blank" href="https://accounts.google.com/"><img src="footer/mail.jpg" height=30px;></a></td>
+</tr>
+</table>
+<p style="text-align:right;font-weight:bold;padding-right:10px;color:white;">Developed By: Archit Kumar Singh  </p>
+</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,379 @@
+REST API (Respresentational State Transfer)(Application Program Interface)--StateLess
+--------------------------------------------------------------------------------
+>>It is a software that allows two applications to communicate with each other over 
+the internet and through various devices. Every time you access an app Like Facebook
+or check the weather on your smartphone,An API is used.
+RESTFUL-(Representational State Transfer)
+----------------------------------------------------------------------
+A "RestFul API" is an architectural style for an application program interface(API)
+that uses HTTP requests to access and use data. REST is not a programming language.
+Before rest we use SOAP. Now Current we can also use "GraphQL".
+Stateless->As per the REST architecuture the server doesnot store any state about
+the client session on the server-side. Stateless means that every HTTP request happens
+in complete isloation. when the client makes an HTTP request. It includes all 
+information necessary for the server to fulfill that request.
+------------------------------------------------------------------------------------
+Create Web API:- Code First Approach.
+----------------------------------------------------------------------------------
+--Select ASP.net and tick WEbAPI.
+--Add WEbApi2 Controller. UserController
+-------------------------------------------------------------------------------------
+public class UserController : ApiController
+    {
+        [HttpGet]
+        public string Greet(string name)
+        {
+            return "Welcome" + name;
+        }
+    }
+https://localhost:44344/api/user?name=Kailash
+----------------------------------------------------------------------------
+Perform WebApiCRUD Operation-EF Code First
+-------------------------------------------------------
+Add Model-
+--------------
+public class User
+    {
+        public int UserId { get; set; }
+        public string Name { get; set; }
+        public string Address { get; set; }
+        public string Contact { get; set; }
+
+    }
+------------------------------------------------------------
+Add one more class
+-----------------------------
+public class DatabaseContext:DbContext
+    {
+        public DatabaseContext() : base("DefaultConnection")
+        {
+            
+        }
+        public DbSet<User> Users { get; set; }
+    }
+-----------------------------------------------------------------------------
+Go to WebConfig-
+----------------------------
+</appSettings>
+	<connectionStrings>
+		<add name="DefaultConnection" providerName="System.Data.SqlClient" connectionString="data source=DESKTOP-N2302CC\SQLEXPRESS;initial catalog=WebApi_CRUD;Persist Security Info=True;Integrated Security=True;MultipleActiveResultSets=True;App=EntityFramework"/>
+	</connectionStrings>
+-------------------------------------------------------------------------------------------------
+Now perform Migration- package manager console.
+---------------------------------------------------------------------------
+pm> enable-migrations 
+pm> add-migration 
+pm> update-database 
+----------------------------------------------------------------------------------
+Add ->User Controller
+-----------------------------
+namespace ASP.NET_WEB_API_MVC.Controllers
+{
+    public class UserController : ApiController
+    {
+        //[HttpGet]
+        //public string Greet(string name)
+        //{
+        //    return "Welcome" + name;
+        //}
+        DatabaseContext db = new DatabaseContext();
+
+        //api/user
+        public IEnumerable<User> GetUsers()
+        {
+            return db.Users.ToList();
+        }
+        //api//user/2
+        public User GetUser(int id)
+        {
+            return db.Users.Find(id);
+        }
+
+        //api//user
+        [HttpPost]
+        public HttpResponseMessage AddUser(User model)
+        {
+            try
+            {
+                db.Users.Add(model);
+                db.SaveChanges();
+                HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.Created); //201
+                return response;
+            }
+            catch (Exception ex)
+            {
+                HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.InternalServerError); //500
+                return response;
+
+            }
+        }
+        [HttpPut]
+        public HttpResponseMessage UpdateUser(int id,User model)
+        {
+            try
+            {
+                if (id == model.UserId)
+                {
+                    db.Entry(model).State = EntityState.Modified;
+                    db.SaveChanges();
+                    HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK); //200
+                    return response;
+                }
+                else 
+                {
+                    HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.NotModified); //304
+                    return response;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.InternalServerError); //500
+                return response;
+
+            }
+        }
+        //api/user/id
+        public HttpResponseMessage DeleteUser(int id)
+        {
+            User user = db.Users.Find(id);
+            if (user != null)
+            {
+                db.Users.Remove(user);
+                db.SaveChanges();
+                HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.OK); //200
+                return response;
+            }
+            else
+            {
+                HttpResponseMessage response = new HttpResponseMessage(HttpStatusCode.NotFound); //500
+                return response;
+            }
+        }
+---------------------------------------------------------------------------------------
+Now Check using Postman
+--------------------------------------------
+1. Copy webapi URL-
+Consume WebAPI- right click on ASP.net Webapi mvc->properties->Web->Project URL copy.
+2. Now Add controller->User->MVCAPICONSUME
+3. Rightclick->References->System.net.http.
+4. Install Newtonsoft.Json.  (Serialize and Deserialize)
+---------------------------------------------------------------------------------------------------------------------------------
+Add Model-
+---------------------
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+
+namespace MVCAPIConsume.Models
+{
+    public class UserViewModel
+    {
+        public int UserId { get; set; }
+        public string Name { get; set; }
+        public string Address { get; set; }
+        public string Contact { get; set; }
+    }
+}
+-----------------------------------------------------------------
+Add In UserController-
+--------------------------------
+namespace MVCAPIConsume.Controllers
+{
+    public class UserController : Controller
+    {
+        Uri baseAddress = new Uri("https://localhost:44344/api");
+        HttpClient client;
+        // GET: User
+        public UserController()
+        {
+            client = new HttpClient();
+            client.BaseAddress = baseAddress;
+        }
+        public ActionResult Index()
+        {
+            List<UserViewModel> modelList = new List<UserViewModel>();
+            HttpResponseMessage response = client.GetAsync(client.BaseAddress + "/user").Result;
+            if (response.IsSuccessStatusCode)
+            {
+                string data = response.Content.ReadAsStringAsync().Result;
+                modelList = JsonConvert.DeserializeObject<List<UserViewModel>>(data);
+            }
+            return View(modelList);
+        }
+        public ActionResult Create()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Create(UserViewModel model)
+        {
+            string data = JsonConvert.SerializeObject(model);
+            StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = client.PostAsync(client.BaseAddress + "/user", content).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+        public ActionResult Edit(int id)
+        {
+            UserViewModel model = new UserViewModel();
+            HttpResponseMessage response = client.GetAsync(client.BaseAddress + "/user/"+id).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                string data = response.Content.ReadAsStringAsync().Result;
+                model = JsonConvert.DeserializeObject<UserViewModel>(data);
+            }
+            return View("Create",model);
+        }
+
+        [HttpPost]
+        public ActionResult Edit(UserViewModel model)
+        {
+            string data = JsonConvert.SerializeObject(model);
+            StringContent content = new StringContent(data, Encoding.UTF8, "application/json");
+            HttpResponseMessage response = client.PutAsync(client.BaseAddress + "/user/"+ model.UserId, content).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            return View("Create",model);
+        }
+        public ActionResult Delete(int id)
+        {
+            HttpResponseMessage response = client.DeleteAsync(client.BaseAddress + "/user/" + id).Result;
+            if (response.IsSuccessStatusCode)
+            {
+                return RedirectToAction("Index");
+            }
+            return RedirectToAction("Index");
+        }
+    }
+}
+--------------------------------------------------------------------------------------
+Index.csHtml
+-------------------------
+@model IEnumerable<MVCAPIConsume.Models.UserViewModel>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.UserId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Contact)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.UserId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Contact)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new {  id=item.UserId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.UserId},new { onclick = "return confirm('Are you sure to delete')" })
+        </td>
+    </tr>
+}
+
+</table>
+------------------------------------------
+Create.csHtml
+--------------------
+@model MVCAPIConsume.Models.UserViewModel
+
+@{
+    ViewBag.Title = Model!=null?"Edit": "Create";
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        @Html.HiddenFor(model=>model.UserId)
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @*<div class="form-group">
+            @Html.LabelFor(model => model.UserId, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.UserId, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.UserId, "", new { @class = "text-danger" })
+            </div>
+        </div>*@
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Contact, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Contact, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Contact, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    
+</div>
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+---------------------------------------------------------------------------------------------
+
+
+

@@ -1,0 +1,31 @@
+Right click on Project and then open Git Bash Here--
+---------------------------------------------------------------------------------
+git init   -> only first time.
+git status
+git add -A
+git status
+git commit -m "any name/Initial Commit"
+git remote add origin "copy repository link"  -> First Time.
+git push -u origin master
+git status   -> nothing to commit, working tree clean
+---------------------------------------------------------------------
+When you change in any file:-
+-------------------------------------------
+git status
+git add -A
+git status
+git commit -m "any name"
+git push -u origin master
+git status -> nothing to commit, working tree clean
+----------------------------------------------------------------------
+git pull --rebase origin master 
+git log
+-----------------------------------------------
+
+
+
+
+
+
+
+

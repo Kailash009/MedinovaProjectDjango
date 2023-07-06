@@ -1,0 +1,63 @@
+Latest Versions:-
+------------------------------------------------
+.NET Framework 4.8.1	August 9, 2022
+-----------------------------------------------
+.NET Core -> 7.0 (latest) -> 7.0.1	December 13, 2022
+---------------------------------------------------------------
+C# 11.0 -> NET. As of November 2022
+---------------------------------------------------------------
+Angular 14 was released on June 02, 2022
+Angular15  Latest in 2023.
+--------------------------------------------------------------
+React -> 18.2.0
+-----------------------
+Node -> 18.12.1
+----------------------- 
+1.Enums.
+2.Optional parameters.
+3.What are Named Arguments?
+4.What is params Parameter?
+5.How to Pass argument by value, ref and out.
+6.What is the partial class, partial methods.
+7.Delegate.
+8.Generic Class.
+9.Extension Methods.
+10.Anonymous Types.
+11.Lamda Expresssion.
+12.Tuples.
+13.String Interpolation.
+14.Null Conditional Operator.
+15.Auto Property Initializer.
+16.Dictionary / Index Initializer.
+17.Expression-bodied function members.
+18.What is name of Expression.
+19.Asyn & Await.
+20.Serialization and Deserialization.
+21.const and readonly.
+22.Shadow.
+---------------------------------------------------------------
+New:-
+--------------------------------------------------
+>>> Use the new keyword to hide the base class method from the derived class. This is done by declaring the derived class function with new. This is how new is used in Shadowing.
+public new string getResult()
+-----------------------------------------------------------------
+Public class BaseClass
+{
+    public string GetMethodOwnerName()
+    {
+       return "Base Class";
+    }
+}
+public class ChildClass : BaseClass
+{
+    public new string GetMethodOwnerName()  // Method Hiding /  (Shadowing)
+    {
+       return "ChildClass";
+    }
+}
+static void Main(string[] args)
+{
+    ChildClass c = new ChildClass();
+    Console.WriteLine(c.GetMethodOwnerName());
+}
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
